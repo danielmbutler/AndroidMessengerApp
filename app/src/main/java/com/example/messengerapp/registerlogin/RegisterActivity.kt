@@ -1,17 +1,18 @@
-package com.example.messengerapp
+package com.example.messengerapp.registerlogin
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import com.example.messengerapp.messages.LatestMessagesActivity
+import com.example.messengerapp.R
+import com.example.messengerapp.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.*
@@ -125,13 +126,18 @@ class RegisterActivity : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
 
-        val user = User(uid, Username_EditText_RegScreen.text.toString(),ProfileImageUrl)
+        val user = User(
+            uid,
+            Username_EditText_RegScreen.text.toString(),
+            ProfileImageUrl
+        )
 
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity", "Saved user to firebaseDB")
 
-                val intent = Intent(this,LatestMessagesActivity::class.java)
+                val intent = Intent(this,
+                    LatestMessagesActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
 
@@ -142,6 +148,3 @@ class RegisterActivity : AppCompatActivity() {
     }
 }
 
-class User(val uid: String,val username: String, val profileImageUrl: String) {
-    constructor() : this("","","")
-}
