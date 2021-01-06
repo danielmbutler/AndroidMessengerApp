@@ -34,6 +34,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".registerlogin.LoginActivity" />
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".messages.LatestMessagesActivity" />
+
     </application>
 
 </manifest>
