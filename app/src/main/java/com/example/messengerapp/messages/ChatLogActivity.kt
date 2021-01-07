@@ -3,7 +3,9 @@ package com.example.messengerapp.messages
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.MenuView
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.messengerapp.R
@@ -22,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_chat_log.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_from_row.view.textView
 import kotlinx.android.synthetic.main.chat_to_row.view.*
+import kotlinx.android.synthetic.main.latest_message_row.*
 
 
 class ChatLogActivity : AppCompatActivity() {
@@ -93,11 +96,9 @@ class ChatLogActivity : AppCompatActivity() {
 
                         adapter.add(ChatToItem(chatMessage.text, toUser!!))
                         recyclerview_chatlog.scrollToPosition(adapter.itemCount -1)
-                    
 
 
                     }
-
 
                 }
 

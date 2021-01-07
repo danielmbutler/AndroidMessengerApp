@@ -3,6 +3,7 @@ package views
 import android.graphics.Color
 import android.graphics.Color.red
 import android.util.Log
+import android.view.View.VISIBLE
 import com.example.messengerapp.R
 import com.example.messengerapp.models.ChatMessage
 import com.example.messengerapp.models.User
@@ -47,7 +48,7 @@ class LatestMessage(val chatMessage: ChatMessage): Item<GroupieViewHolder>(){
                 Picasso.get().load(chatPartnerUser?.profileImageUrl).into(targetID)
 
                 if(chatMessage.readReceipt == "Unread" && chatMessage.fromId != FirebaseAuth.getInstance().uid ){
-                    viewHolder.itemView.setBackgroundColor(Color.YELLOW)
+                    viewHolder.itemView.NotificationStar.visibility = VISIBLE
                     Log.d("lATESTMESSAGE VIEW", chatMessage.id)
                     Log.d("lATESTMESSAGE VIEW", chatMessage.readReceipt)
                 } else {
